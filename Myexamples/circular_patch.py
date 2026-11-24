@@ -34,9 +34,9 @@ model.commit_geometry()
 model.mw.set_frequency_range(f1,f2,21)
 model.mw.set_resolution(0.2)
 
-model.mesher.set_boundary_size(trace, 1e-3)
-model.mesher.set_domain_size(coax_out_1, ri)
-model.mesher.set_domain_size(coax_out_2, ri)
+#model.mesher.set_boundary_size(trace, 1e-3)
+#model.mesher.set_domain_size(coax_out_1, ri)
+#model.mesher.set_domain_size(coax_out_2, ri)
 
 model.generate_mesh()
 model.view(assigned_materials=True)
@@ -48,6 +48,7 @@ model.mw.bc.AbsorbingBoundary(abc_boundary)
 model.mw.bc.ModalPort(coax_out_1.face('-z'),1)
 model.mw.bc.ModalPort(coax_out_2.face('-z'),2)
 
+model.adaptive_mesh_refinement(frequency=2.4e9)
 data = model.mw.run_sweep()
 
 g = data.scalar.grid
@@ -87,6 +88,7 @@ ff3d = field.farfield_3d(abc_boundary)
 display = model.display
 display.populate()
 display.add_farfield3d(ff3d, 'gain.norm', 'abs', dB=True, dBfloor=-20, rmax=50e-3, opacity=0.5)
-display.animate().add_field(field.grid(N=500_000).scalar('Ex','complex'), symmetrize=True, clim_crop_factor=0.5)
+#display.animate().add_field(field.grid(N=500_000).scalar('Ex','complex'), symmetrize=True, clim_crop_factor=0.5)
+display.animate().add_field(field.grid(N=50_000).vector('E', 'complex'), symmetrize=True, clim_crop_factor=0.5)        
 display.show()
 

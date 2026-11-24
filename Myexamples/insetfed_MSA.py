@@ -123,8 +123,8 @@ model.mw.set_resolution(0.2)
 
 # Optional: refine the mesh locally around critical features
 # (edges, ports, small gaps, vias, etc.)
-model.mesher.set_boundary_size(em.select(trace, patch_poly), 1 * mm)
-model.mesher.set_face_size(lumped_port_face, 0.5 * mm)
+#model.mesher.set_boundary_size(em.select(trace, patch_poly), 1 * mm)
+#model.mesher.set_face_size(lumped_port_face, 0.5 * mm)
 
 ############################################################
 #                    GENERATE & VIEW MESH                   #
@@ -143,7 +143,7 @@ model.mw.bc.AbsorbingBoundary(abc_boundary)
 ############################################################
 #                       RUN SIMULATION                      #
 ############################################################
-
+model.adaptive_mesh_refinement(frequency=f0)
 data = model.mw.run_sweep()
 
 ############################################################

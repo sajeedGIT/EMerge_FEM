@@ -15,7 +15,7 @@ t = 0.5e-3          # Outer conductor thickness = 0.5 mm
 L = 20e-3           # Cable length = 20 mm
 
 
-Nsec = None # Set to None to turn it off.
+Nsec = 25 # Set to None to turn it off.
 PortType = 'COAX' # Or 'COAX'
 # Air dielectric
 er = 1.0

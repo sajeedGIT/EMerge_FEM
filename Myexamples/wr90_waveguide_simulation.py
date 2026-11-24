@@ -24,7 +24,7 @@ port1 = my_model.mw.bc.ModalPort(box.front, 1, modetype='TE', number_of_modes=1)
 port2 = my_model.mw.bc.ModalPort(box.back, 2, modetype='TE', number_of_modes=1)
 #port1 = my_model.mw.bc.RectangularWaveguide(box.front, 1)
 #port2 = my_model.mw.bc.RectangularWaveguide(box.back, 2)
-
+my_model.adaptive_mesh_refinement(frequency=10e9)
 fdata = my_model.mw.run_sweep()
 
 freqs = fdata.scalar.grid.freq

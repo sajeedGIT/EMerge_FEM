@@ -46,5 +46,5 @@ F = field.grid(N=20000)
 Eanim = F.Ex**2 + F.Ey**2 + F.Ez**2
 display = my_model.display
 display.populate()
-display.cbar('Eqs').animate().add_cloud(F.x, F.y, F.z, F.Ey, symmetrize=True)
+display.cbar('Eqs').animate().add_cloud(F.x, F.y, F.z, Eanim, symmetrize=True)
 display.show()

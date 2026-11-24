@@ -34,8 +34,8 @@ model.view(labels=True)
 model.mw.set_frequency_range(2.2e9, 2.6e9, 21)
 model.mw.set_resolution(0.2)
 
-model.mesher.set_boundary_size(trace,1e-3)
-model.mesher.set_domain_size(coax_out, ri)
+#model.mesher.set_boundary_size(trace,1e-3)
+#model.mesher.set_domain_size(coax_out, ri)
 
 model.generate_mesh()
 model.view(plot_mesh=True)
@@ -43,7 +43,7 @@ model.view(plot_mesh=True)
 abc_boundary = air.boundary(exclude="bottom")
 model.mw.bc.AbsorbingBoundary(abc_boundary)
 model.mw.bc.ModalPort(coax_out.face('-z'),1)
-
+model.adaptive_mesh_refinement(frequency=2.45e9)
 data = model.mw.run_sweep()
 
 g = data.scalar.grid

@@ -37,7 +37,7 @@ model = em.Simulation('Cylindrical Waveguide')
 mm = 1e-3
 a = 8.74*mm # Radious of the wave guide
 l=100*mm # length of the waveguide
-cyl = em.geo.Cylinder(radius=a,height=l,Nsections=20)
+cyl = em.geo.Cylinder(radius=a,height=l,Nsections=25)
 model.commit_geometry()
 model.view()
 
